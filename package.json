@@ -11,7 +11,6 @@
   "version": "2.1.1",
   "homepage": "http://swagger.io",
   "license": "Apache-2.0",
-  "main": "dist/swagger-ui.js",
   "scripts": {
     "build": "gulp",
     "serve": "gulp serve",
@@ -50,6 +49,6 @@
     "less": "^2.4.0",
     "mocha": "^2.1.0",
     "selenium-webdriver": "^2.45.0",
-    "swagger-client": "2.1.2"
+    "swagger-client": "git+https://github.com/swagger-api/swagger-js#master"
   }
 }
