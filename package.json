@@ -11,7 +11,6 @@
   "version": "2.2.8",
   "homepage": "http://swagger.io",
   "license": "Apache-2.0",
-  "main": "dist/swagger-ui.js",
   "scripts": {
     "build": "npm run handlebars && gulp",
     "handlebars": "handlebars ./src/main/template -f ./src/main/template/templates.js && gulp handlebars",
@@ -63,6 +62,6 @@
     "run-sequence": "^1.2.2",
     "selenium-webdriver": "^2.45.0",
     "sinon-chai": "2.8.0",
-    "swagger-client": "2.1.25"
+    "swagger-client": "git+https://github.com/wikimedia/swagger-js.git#master"
   }
 }
