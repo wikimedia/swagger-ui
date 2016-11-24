@@ -683,6 +683,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
     var pre;
     var code;
+    var skipHighlight = false;
     if (!content) {
       code = $('<code />').text('no content');
       pre = $('<pre class="json" />').append(code);
@@ -716,7 +717,8 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         if(typeof disposition !== 'undefined') {
           var responseFilename = /filename=([^;]*);?/.exec(disposition);
           if(responseFilename !== null && responseFilename.length > 1) {
-            download = responseFilename[1];
+            download = decodeURIComponent(responseFilename[1]);
+            fileName = download;
           }
         }
 
@@ -725,6 +727,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         a.innerText = 'Download ' + fileName;
 
         pre = $('<div/>').append(a);
+        skipHighlight = true;
       } else {
         pre = $('<pre class="json" />').append('Download headers detected but your browser does not support downloading binary via XHR (Blob).');
       }
@@ -800,7 +803,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
     var response_body_el = $('.response_body', $(this.el))[0];
     // only highlight the response if response is less than threshold, default state is highlight response
-    if (opts.highlightSizeThreshold && typeof response.data !== 'undefined' && response.data.length > opts.highlightSizeThreshold) {
+    if (opts.highlightSizeThreshold && typeof response.data !== 'undefined' && response.data.length > opts.highlightSizeThreshold || skipHighlight) {
       return response_body_el;
     } else {
       return hljs.highlightBlock(response_body_el);
